@@ -3,9 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { cn } from '../lib/utils';
 import "./globals.css";
 import { AuthProvider } from "./providers";
+import { ThemeProvider } from "@/components/theme-provider"
 
 
 import React, { ReactNode } from "react";
+import { ModeToggle } from "@/components/ModeToggle/ModeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,11 +30,23 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className="min-h-screen h-screen overflow-y-auto bg-gray-100">
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className="min-h-screen h-screen overflow-y-auto dark:bg-gray-900">
+        <div className="flex justify-end p-4">
+          <ModeToggle />
+          </div>
+        
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </ThemeProvider>
+        
       </body>
     </html>
   );

@@ -58,7 +58,7 @@ export default function SignUp() {
         setIsSubmitting(true)
 
         try {
-            // heck user exists
+            // check user exists
             const userExistsRes = await fetch("/api/userExists", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -92,7 +92,7 @@ export default function SignUp() {
             router.push("/sign-in")
         } catch (err) {
             console.error("Signup error:", err)
-            setError(err instanceof Error ? err.message : "An unexpected error occurred")
+            setError(err instanceof Error ? err.message : "error occurred")
         } finally {
             setIsSubmitting(false)
         }
@@ -107,7 +107,7 @@ export default function SignUp() {
                 <CardContent>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                            {/* Form fields remain the same */}
+                            
                             <FormField
                                 control={form.control}
                                 name="name"

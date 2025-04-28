@@ -50,6 +50,8 @@ export const authOptions: NextAuthOptions = {
             },
         }),
     ],
+
+    //configaration
     session: {
         strategy: "jwt",
     },
